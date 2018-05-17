@@ -25,7 +25,7 @@ SECRET_KEY = 'fr-m%#o&dom472df=s7@@mk2$16lt^s^qdakkc#990r@2*86^^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://eicoapp.herokuapp.com']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
