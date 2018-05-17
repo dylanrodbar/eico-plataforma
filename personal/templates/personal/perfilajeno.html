@@ -1,0 +1,188 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+
+
+<div class="container" style="margin-top:100px;">
+        <div class="row">
+      
+                  <div class="card hovercard">
+                      <div class="cardheader">
+                            <div align="right">
+                                
+                             </div>
+                      </div>
+                      
+                      <div class="avatar">
+                          <img src={{ datos_usuario.5 }}  class="img-circle" >
+                      </div>
+
+                       
+                      <div class="info">
+                          <div class="title">
+                              {{ datos_usuario.0 }}
+                          </div>
+                          <div class="desc">{{ datos_usuario.2 }}</div>
+                          <div class="desc">{{ datos_usuario.3 }}</div>
+                          <div class="desc">{{ datos_usuario.4 }}</div>
+                          <div class="desc">{{ datos_usuario.1 }}</div>
+                      </div>
+                  </div>
+
+        </div>
+
+
+        <!-- Experiencia Proyectos -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                        <div class="col-md-8">
+                            <h3><b>Experiencia/Proyectos</b></h3>
+                        </div>
+                        <div class="col-md-4" align="right">
+                            
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="panel-body">
+                <ul class="list-group">
+                    <div id="list" style="height: auto; max-height: 200px; overflow-x: hidden;">
+
+                    {% for i in experiencia %}
+                    <li class="list-group-item" style="border: none">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href=#>
+                                    <span class="glyphicon glyphicon-briefcase" style="font-size: 50px; margin-right:10px;" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="media-heading">Puesto de trabajo / Nombre Proyecto <small><i>{{ i.3|date:"d-m-Y" }}</i></small></h4>
+                                    </div>
+                                    <div class="col-md-4" align="right">
+                                            
+                                    </div>
+                                </div>
+                                <p>
+                                    {{i.1}}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
+                    {% endfor %}
+            </div>
+        </div>
+      
+    </div>
+
+    <!-- Educacion -->
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                        <div class="col-md-8">
+                            <h3><b>Educacion</b></h3>
+                        </div>
+                        <div class="col-md-4" align="right">
+                            
+                        </div>
+                </div>
+                
+            </div>
+
+            <div class="panel-body">
+                <ul class="list-group">
+                    <div id="list" style="height: auto; max-height: 200px; overflow-x: hidden;">
+
+                    {% for i in educacion %}
+                    <li class="list-group-item" style="border: none">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href=#>
+                                    <span class="glyphicon glyphicon-education" style="font-size: 50px; margin-right:10px;" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="media-heading">Escuela - Titulo <small><i>{{ i.3|date:"d-m-Y" }}</i></small></h4>
+                                    </div>
+                                    <div class="col-md-4" align="right">
+                                            
+                                    </div>
+                                </div>
+                                <p>
+                                    {{i.1}}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
+                    {% endfor %}
+            </div>
+        </div>
+      
+    </div>
+
+    <!-- Publicacion -->
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                        <div class="col-md-8">
+                            <h3><b>Publicaciones</b></h3>
+                        </div>
+                        <div class="col-md-4" align="right">
+                            
+                        </div>
+                </div>
+                
+            </div>
+
+            <div class="panel-body">
+                <ul class="list-group">
+                    <div id="list" style="height: auto; max-height: 200px; overflow-x: hidden;">
+
+                    {% for i in publicaciones_usuario %}
+                    <li class="list-group-item" style="border: none">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="/foro/ver/{{i.5}}">
+                                    <span class="glyphicon glyphicon-copy" style="font-size: 50px; margin-right:10px;" aria-hidden="true"></span>
+                                 </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="media-heading">{{ i.0 }} <small><i>{{ i.3|date:"d-m-Y" }}</i></small></h4>
+                                    </div>
+                                    <div class="col-md-4" align="right">
+                                        
+                                    </div>
+                                </div>
+                                <p>
+                                    {{ i.1 }}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
+                    {% endfor %}
+            </div>
+        </div>
+      
+    </div>
+    
+
+</div>
+
+
+
+
+
+{% endblock %}

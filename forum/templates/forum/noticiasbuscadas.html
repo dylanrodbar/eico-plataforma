@@ -1,0 +1,26 @@
+{% extends "forum/escuela.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<!-- Modal content-->
+<div class="modal-dialog">
+<div class="modal-content">     
+               
+        <div class="modal-body" style="padding:40px 50px;"> 
+            <h1>Resultados de la busqueda</h1>   
+          <ul class="w3-ul w3-hoverable w3-white">               
+            {% for i in noticias %}
+            <li class="w3-padding-16">
+                <a href="/foro/ver/{{i.0}}">
+                    <img src={{i.4}} alt="Image" class="w3-left w3-margin-right" style="height:30px; width: 30px">
+                </a>
+              <span class="w3-large">{{i.1}}</span><br>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

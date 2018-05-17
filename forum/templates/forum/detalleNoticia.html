@@ -1,0 +1,105 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="container" style="margin-top:100px; margin-bottom:100px;">
+
+        <div class="w3-row">
+            
+
+             <div class="w3-card-4 w3-margin w3-white">
+                <img src={{ publicacion.4  }} alt="Noticia" style="width:100% ; max-height:400px">
+
+                <div class="text-right">
+                    <div class="row" style="margin-top:10px; margin-right:10px;">
+                            <a href="/foro/noticia/calificarrelevante/{{id}}">
+                                <button class="btn" style="margin-bottom:10px;"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Relevante
+                                    <span class="badge">{{relevantes.0}}</span>
+                                </button>
+                            </a>
+                            <a href="/foro/noticia/calificarindiferente/{{id}}">
+                                <button class="btn" style="margin-bottom:10px;"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Indiferente
+                                    <span class="badge">{{indiferentes.0}}</span>
+                                </button>
+                            </a>
+                            <a href="/foro/noticia/calificaremocionante/{{id}}">   
+                                <button class="btn" style="margin-bottom:10px;"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Emocionante
+                                    <span class="badge">{{emocionantes.0}}</span>
+                                </button>
+                            </a>   
+                    </div>   
+                 </div>             
+                
+               
+                    
+                <div class="w3-container">
+                  <h3><b>{{publicacion.0}}</b></h3>
+                    <h5>Autor de la notica, <a href="/perfil/ajeno/{{publicacion.6}}">{{ publicacion.5 }}</a> <span class="w3-opacity">{{ post.3|date:"d-m-Y" }}</span></h5>
+                  
+                </div>
+            
+                <div class="w3-container">
+                    {{ publicacion.1 }}
+                </div>
+
+                <br>
+                <br>
+                
+                <div class="embed-responsive embed-responsive-16by9" style="margin-right:20px;margin-left:20px;">
+                        <iframe class="embed-responsive-item" src={{ publicacion.2 }}></iframe>
+                </div>
+
+                <br>
+
+              </div>
+
+              <br>
+              <br>
+
+              {% if request.session.Usuario %}
+              <h4>Deja un comentario</h4>
+                <form role="form" method='POST' enctype="multipart/form-data" action='{% url 'forum:insertarComentario' id %}'  >  {% csrf_token %}
+                    <div class="form-group">
+                    <textarea class="form-control" name="comentario" rows="6" style="resize: none;"required></textarea>
+                    </div>
+                    <div align="right">
+                        
+                            <button type="submit" class="btn" style="background-color:#2471A3; color:white;">Enviar</button>
+                    </div>
+                </form>
+                {% endif %}
+                
+                <p>Comentarios:</p><br>
+
+                <ul class="list-group">
+                    <div id="list" style="height: auto; max-height: 450px; overflow-x: hidden;">
+                        
+                    {% for i in comentarios %}
+                    <li class="list-group-item" style="border: none">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="/perfil/ajeno/{{i.4}}">
+                                <img src={{ i.3 }} class="img-circle" style="width:60px">
+                                <a/>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ i.2 }} <small><i>{{ i.1|date:"d-m-Y" }}</i></small></h4>
+                                <p>
+                                    {{ i.0 }}
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
+               
+                    {% endfor %}
+
+                </div>
+            </ul>
+          
+        </div>
+
+</div>
+
+{% endblock %}

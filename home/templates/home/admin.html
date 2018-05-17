@@ -1,0 +1,420 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="container">
+    <div class="jumbotron" style="background-color: #E6E6E6; color: #000000" >
+            <h1>Bienvenido</h1>
+            <p>En esta sección se presenta los elementos para administrar el sitio web</p>
+            <p><a class="btn btn-primary btn-lg" href="#" data-toggle="modal" data-target="#UpdateUser" role="button">Actualizar Usuarios</a></p>
+    </div>
+
+    
+    <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#stat">Estadisticas</a></li>
+    <li><a data-toggle="tab" href="#menu1">Servicios</a></li>
+    <li><a data-toggle="tab" href="#menu2">Sitios de interes</a></li>
+    <li><a data-toggle="tab" href="#menu3">Calendario</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="stat" class="tab-pane fade in active">
+
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Estadisticas</h3>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tipo
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/inicio/admin/estadisticasVisitas/">Visitas</a></li>
+                        <li><a href="/inicio/admin/estadisticasReacciones/">Reacciones</a></li>
+                    </ul> 
+                    </div>
+
+                    <br>
+                    <br>
+                    {% for i in direcciones %}
+                    <div align="center">
+                        <img src={{i}}>
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <br>
+                
+            </div>
+            <div class="col-md-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">General</a>
+                        <a href="#" class="list-group-item">Noticia 1</a>
+                        <a href="#" class="list-group-item">Noticia 2</a>
+                        <a href="#" class="list-group-item">Noticia 3</a>
+                        <a href="#" class="list-group-item">Noticia 4</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="menu1" class="tab-pane fade">
+      <h3>Servicios</h3>
+      
+      <div align="right" style="margin-right:18px; margin-bottom:8px;">
+            <a href="#" data-toggle="modal" data-target="#AgregarServicio"><button type="submit" class="btn btn-default btn-sm" >
+            <span class="glyphicon glyphicon-plus"></span></button></a>
+        </div>
+        
+
+        <ul class="list-group">
+        <div id="list" style="height: auto; max-height: 220px; overflow-x: hidden;">
+            <li class="list-group-item">
+            <div class="row">
+                {% for servicio in servicios %}
+                <div class="col-md-8"> {{servicio.1}} </div>
+                    <div class="col-md-4" align= "right">
+                        <a href="admin/editarservicio/{{servicio.0}}" data-toggle="modal" data-target="#editarSitio"><button type="submit" class="btn btn-default btn-sm" >
+                                <span class="glyphicon glyphicon-pencil"></span></button></a>
+                                <a type="submit" data-toggle="modal" data-target="#ConfirmarEliminarServicio" href="admin/eliminarservicio/{{servicio.0}}" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                {% endfor %}
+                
+            </li>
+
+                  
+
+            </div>
+        </ul>
+
+    </div>
+
+
+    <div id="menu2" class="tab-pane fade">
+        
+        <h3>Sitios de interes</h3>
+     
+    <div align="right" style="margin-right:18px; margin-bottom:8px;">
+        <a href="#" data-toggle="modal" data-target="#AgregarSitio"><button type="submit" class="btn btn-default btn-sm" >
+        <span class="glyphicon glyphicon-plus"></span></button></a>
+    </div>
+            
+           
+         
+      
+      <ul class="list-group">
+            <div id="list" style="height: auto; max-height: 220px; overflow-x: hidden;">
+                <li class="list-group-item">
+                <div class="row">
+                    {% for sitio in sitiosinteres %}
+                    <div class="col-md-8"> {{sitio.1}} </div>
+                    <div class="col-md-4" align= "right">
+                        <a href="admin/editar/{{sitio.0}}" data-toggle="modal" data-target="#editarSitio"><button type="submit" class="btn btn-default btn-sm" >
+                                <span class="glyphicon glyphicon-pencil"></span></button></a>
+                        
+                        <a type="submit" data-toggle="modal" data-target="#ConfirmarEliminarSitio" href="admin/eliminar/{{sitio.0}}" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    {% endfor %}
+                    
+                </li>
+                            
+            </div>
+        </ul>
+
+        <br>
+        <br>
+
+    </div>
+
+    <div id="menu3" class="tab-pane fade">
+      <h3>Calendario</h3>
+
+      <div class="row">
+            <div class="col-md-8">
+                <div class="input-group">
+
+                    <input type="date" name="dateAdd">
+                    <button class="btn" type="button" style="background:white;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div align="right" style="margin-right:18px; margin-bottom:8px;">
+                    <a href="#" data-toggle="modal" data-target="#AgregarEvento"><button type="submit" class="btn btn-default btn-sm" >
+                    <span class="glyphicon glyphicon-plus"></span></button></a>
+                </div>
+            </div>
+      </div>
+      
+      <ul class="list-group">
+            <div id="list" style="height: auto; max-height: 450px; overflow-x: hidden;">
+                <li class="list-group-item">
+                <div class="row">
+                {% for calendario in calendarios %}
+
+                    <div class="col-md-8">
+                            <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ calendario.1 }}</h5>
+                                    <small>{{ calendario.3|date:"d-m-Y" }}</small>
+                            </div>
+                    </div>
+
+                    <div class="col-md-4" align= "right">
+                            <a href="admin/editarEvento/{{calendario.0}}" data-toggle="modal" data-target="#EditarEvento"><button type="submit" class="btn btn-default btn-sm" >
+                                    <span class="glyphicon glyphicon-pencil"></span></button></a>
+                                    <a type="submit" data-toggle="modal" data-target="#ConfirmarEliminarCalendario" href="admin/eliminarevento/{{calendario.0}}" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-remove"></span></a>
+
+                    </div>
+                {% endfor %}
+
+
+                </li>
+
+                    
+            </div>
+        </ul>
+    </div>
+   </div>
+    
+</div>
+
+  <!-- Modal Actualizar Usuarios -->
+  <div class="modal fade" id="UpdateUser" role="dialog" style="padding-top:150px;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">           
+                <div class="modal-body" style="padding:40px 50px;">                
+                        <form class="form-signin" method='POST' enctype="multipart/form-data"  action= '{% url 'home:agregarUsuarios' %}'  > {% csrf_token %}
+                            <h1 align="center">Usuarios</h1>
+                            <br>
+                            <h4>Seleccione el archvio para actualizar usuarios</h4>
+                            <br>
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                    <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Seleccione el archivo</span><span class="fileinput-exists">Cambiar</span><input type="file" id="archivo" name="archivo"></span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Quitar</a>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Actualizar</button>
+                      </form>      
+                </div>
+            </div>    
+        </div>
+    </div>  
+
+
+  <!-- Modal Agregar Sitio -->
+  <div class="modal fade" id="AgregarSitio" role="dialog" style="padding-top:150px;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">           
+                <div class="modal-body" style="padding:40px 50px;">                
+                        <form class="form-signin" method='POST' action= '{% url 'home:agregarSitio' %}'  > {% csrf_token %}
+                            <h1 align="center">Sitios de interes</h1>
+                            <br>
+                            <h4>Ingrese el nombre y descripcion</h4>
+                            <br>
+                            <label for="EditNameSitio" class="sr-only">Correo</label>
+                            <input type="text" id="titulo-sitio" name="titulo-sitio" class="form-control" placeholder="Nombre..." required autofocus>
+                            <br>
+                            <div class="form-group">
+                                    <label for="EditDescriptionSitio"></label>
+                                    <textarea class="form-control" rows="5" id="descripcion-sitio" name="descripcion-sitio" placeholder="Descripcion..."></textarea>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>
+                      </form>      
+                </div>
+            </div>    
+        </div>
+    </div>  
+
+     <!-- Modal Editar Sitio -->
+     <div class="modal fade" id="editarSitio" role="dialog" style="padding-top:150px;">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">           
+                    <div class="modal-body" style="padding:40px 50px;">                
+                            <form class="form-signin" method='POST' action='{% url 'home:editarSitioAux' id %}'  > {% csrf_token %}
+                                <h1 align="center">Sitios de interes</h1>
+                                <br>
+                                <h4>Ingrese el nuevo nombre y descripcion</h4>
+                                <br>
+                                <label for="EditNameSitio" class="sr-only">Correo</label>
+                                <input type="text" id="input" class="form-control" placeholder="Nombre..." required autofocus>
+                                <br>
+                                <div class="form-group">
+                                        <label for="EditDescriptionSitio"></label>
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Descripcion..."></textarea>
+                                </div>
+                                <br>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+                          </form>      
+                    </div>
+                </div>    
+            </div>
+        </div>
+
+    <!-- Modal Agregar Evento -->
+  <div class="modal fade" id="AgregarEvento" role="dialog" style="padding-top:150px;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body" style="padding:40px 50px;">
+                        <form class="form-signin" method='POST' action='{% url 'home:agregarEvento'  %}'  > {% csrf_token %}
+                            <h1 align="center">Calendario</h1>
+                            <br>
+                            <h4>Ingrese una fecha, titulo y descripcion</h4>
+                            <br>
+                            <input type="date" name="fecha-evento" required>
+                            <br>
+                            <br>
+                            <label for="EditNameSitio" class="sr-only">Correo</label>
+                            <input type="text" id="input" name="nombre-evento" class="form-control" placeholder="Nombre..." required autofocus>
+                            <br>
+                            <div class="form-group">
+                                    <label for="EditDescriptionSitio"></label>
+                                    <textarea class="form-control" rows="5" id="comment" name="descripcion-evento" placeholder="Descripcion..."></textarea>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal Editar Evento -->
+    <div class="modal fade" id="EditarEvento" role="dialog" style="padding-top:150px;">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body" style="padding:40px 50px;">
+                            <form class="form-signin" method='POST' action='{% url 'home:editarEventoAux' id %}'  > {% csrf_token %}
+                                <h1 align="center">Calendario</h1>
+                                <br>
+                                <h4>Ingrese la nueva fecha, titulo y descripcion</h4>
+                                <br>
+                                <input type="date" name="fecha-evento" required>
+                                <br>
+                                <br>
+                                <label for="EditNameSitio" class="sr-only">Correo</label>
+                                <input type="text" id="input" class="form-control" name="nombre-evento" placeholder="Nombre..." required autofocus>
+                                <br>
+                                <div class="form-group">
+                                        <label for="EditDescriptionSitio"></label>
+                                        <textarea class="form-control" rows="5" name = "descripcion-evento" id="comment" placeholder="Descripcion..."></textarea>
+                                </div>
+                                <br>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+         <!-- Modal Agregar Servicio -->
+  <div class="modal fade" id="AgregarServicio" role="dialog" style="padding-top:150px;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">           
+                <div class="modal-body" style="padding:40px 50px;">                
+                        <form class="form-signin" method='POST' action= '{% url 'home:agregarServicio' %}'  > {% csrf_token %}
+                            <h1 align="center">Sitios de interes</h1>
+                            <br>
+                            <h4>Ingrese el nombre y descripcion</h4>
+                            <br>
+                            <label for="EditNameSitio" class="sr-only">Correo</label>
+                            <input type="text" id="titulo-sitio" name="titulo-servicio" class="form-control" placeholder="Nombre..." required autofocus>
+                            <br>
+                            <div class="form-group">
+                                    <label for="EditDescriptionSitio"></label>
+                                    <textarea class="form-control" rows="5" id="descripcion-servicio" name="descripcion-sitio" placeholder="Descripcion..."></textarea>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>
+                      </form>      
+                </div>
+            </div>    
+        </div>
+    </div>  
+
+
+    <div class="modal fade" id="ConfirmarEliminarServicio" role="dialog" style="padding-top:150px;">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h1 align="center">Servicio</h1><br>
+                <h4>Esta seguro que quiere eliminar el servicio</h4>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>    
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+            
+        </div>
+        </div>
+  </div>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="ConfirmarEliminarCalendario" role="dialog" style="padding-top:150px;">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h1 align="center">Calendario</h1><br>
+                    <h4>Esta seguro que quiere eliminar el evento del calendario</h4>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>    
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+                
+            </div>
+            </div>
+      </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="ConfirmarEliminarSitio" role="dialog" style="padding-top:150px;">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <h1 align="center">Sitio de Interes</h1>
+                        <br>
+                        <h4>Esta seguro que quiere eliminar el sitio de interes</h4>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>    
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                    
+                </div>
+                </div>
+          </div>
+
+
+{% endblock %}

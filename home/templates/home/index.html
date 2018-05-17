@@ -1,0 +1,93 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="jumbotron text-center">
+  <h1>Ingeniería en Construcción</h1> 
+  <br>
+  <p>Desde su nacimiento, la carrera de Ingeniería en Construcción ha facilitado la aparición de ingenieros con una <br>
+      sólida formación académica, conscientes del papel  que juega la ingeniería en el desarrollo de un país y comprometidos <br>
+      con la construcción sostenible.</p> 
+</div>
+
+
+ 
+
+
+<div class="container">
+
+    <!-- Aqui van las noticias relevantes por ahora son 6, masomenos seria asi!-->
+   
+    {% for elementos in noticias %} 
+        <div class="w3-row-padding"> 
+            {% for filas in elementos %}
+                <div class="w3-third w3-container w3-margin-bottom">
+                <a href="/foro/ver/{{filas.0}}">
+                  
+                <img src={{filas.4}} alt="Noticia 1 - nombre" style="width:100%; height:200px"  class="w3-hover-opacity">
+                </a>
+                <div class="w3-container w3-white">
+                    <p><b>{{filas.1}}</b></p>
+                    <p>{{filas.2}}</p>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    
+    
+
+<!-- primera fila !-->
+ 
+<!--
+<div class="w3-row-padding">   
+        <div class="w3-third w3-container w3-margin-bottom">
+          <img src="{% static 'home/img/img1.jpg' %}" alt="Noticia 1" style="width:100%; height:200px"  class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-container w3-margin-bottom">
+          <img src="http://res.cloudinary.com/poppycloud/image/upload/v1523589368/media/Usuario/dua-lipa-new-rules-christmas-920x584_ct2yxo.jpg" style="width:100%; height:200px" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-container">
+          <img src="{% static 'home/img/img3.jpg' %}" alt="Noticia 3" style="width:100%; height:200px" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+      </div>
+      
+      Segunda fila 
+
+      <div class="w3-row-padding">
+        <div class="w3-third w3-container w3-margin-bottom">
+          <img src="{% static 'home/img/img4.jpg' %}" alt="Noticia 4" style="width:100%; height:200px" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-container w3-margin-bottom">
+          <img src="{% static 'home/img/img5.jpg' %}" alt="Noticia 5" style="width:100%;height:200px" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-container">
+          <img src="{% static 'home/img/img6.jpg' %}" alt="Noticia 6" style="width:100%;height:200px"  class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <p><b>Lorem Ipsum</b></p>
+            <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          </div>
+        </div>
+      </div>
+    </div> !-->
+{% endblock %}

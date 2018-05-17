@@ -1,0 +1,33 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="w3-content" style="max-width:1400px">
+
+
+  <div class="w3-container" style="padding:128px 16px" id="about">
+    <h3 class="w3-center">Sitios de interes</h3>
+
+    {% for elementos in servicios %}
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+      
+      {% for servicio in elementos %}
+      <div class="w3-quarter">
+        <i class="w3-margin-bottom w3-jumbo">
+            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> 
+        </i>
+        <p class="w3-large">{{ servicio.1 }}</p>
+        <p>{{ servicio.2 }}</p>
+      </div>
+      {% endfor %}
+      
+    </div>
+  {% endfor %}
+
+  </div>
+
+
+</div>
+
+{% endblock %}

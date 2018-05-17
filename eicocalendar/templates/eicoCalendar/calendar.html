@@ -1,0 +1,106 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+
+
+<div class="container" style="margin-top:100px;margin-bottom:100px;">
+
+    <div class=row>
+            <div class="col-md-10" align="left"><h1>{{mesactual}} {{anioactual}}</h1></div>
+            <div class="col-md-2" algin="right">
+                <ul class="pager">
+                    <li><a href="/calendario/calendario/anteriormes/"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    <li><a href="/calendario/calendario/siguientemes/"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                </ul>
+
+            </div>
+    </div>    
+
+    <div class="w3-responsive">
+    <table class="w3-table w3-bordered w3-large">
+        <thead>
+            <tr style="background-color:#2471A3; color:white;">
+                <th>L</th>
+                <th>K</th>
+                <th>M</th>
+                <th>J</th>
+                <th>V</th>
+                <th>S</th>
+                <th>D</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in "x"|rjust:"42" %}
+                <!--funciona para abrir la etiqueta de las filas-->
+                {% if forloop.counter == 1 or forloop.counter == 8 or forloop.counter == 15 or forloop.counter == 22 or forloop.counter == 29 or forloop.counter == 36 %} 
+                    <tr>
+                {% endif %}
+                
+                <td>
+                {% if forloop.counter0 >= diainiciomes and forloop.counter0 <= sumadias  %}  <!-- el numero "6" simboliza en que dia empieza el mes en este ejemplo domingo, el 36 se hace calculando
+                                                                                los dias del mes (30) + el dia que empezo el mes (6) = 36 -->
+                                
+                    {% if forloop.counter|add:dianegativo == diaactual %}             <!--Como se vera si es la fecha actual -->
+                        <a href="/calendario/calendario/eventosfecha/{{forloop.counter|add:dianegativo}}/{{mesactualnumero}}/{{anioactual}}/">
+                            <button type="button" class="btn" style="width:70px;background-color:#2471A5; color:white;">
+                        
+                    {% else%}
+                        <a href="/calendario/calendario/eventosfecha/{{forloop.counter|add:dianegativo}}/{{mesactualnumero}}/{{anioactual}}/">
+                        
+                            <button type="button" class="btn" style="width:70px;background-color:white; color:#2471A3;">
+                        
+                    {% endif %}
+                    
+                    
+            
+                    {% if forloop.counter|add:dianegativo in dias %}             <!-- aqui deberia hacer la comparicion si la fecha tiene un evento, en el ejemplo se puso 29
+                                                                                    para que se visualice como se veria -->
+                        <h4>
+                                {{ forloop.counter|add:dianegativo}} <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> </h4>   <!-- se le debe restar el dia que empezo el mes que este caso es 6-->
+                    {% else %}
+                        <h4>
+                            {{ forloop.counter|add:dianegativo}}  </h4>
+                    {% endif %}
+                                     
+                    </button></a>
+                {% endif %}  
+                </td> 
+
+                <!--funciona para cerrar la etiqueta de las filas-->
+                {% if forloop.counter == 7 or forloop.counter == 14 or forloop.counter == 21 or forloop.counter == 28 or forloop.counter == 35 or forloop.counter == 42 %}
+                    </tr>
+                {% endif %}
+                
+                
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <br>
+    <br>
+
+    <!--esto se mostario al darle click a una fecha con eventos-->
+    <h3>{{mensajecurso}} </h3>
+    <br>
+    <div class="list-group">
+        {% for calendario in calendarios %}
+
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:#2471A3; color:white;">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ calendario.1 }}</h5>
+                <small>{{ calendario.3|date:"d-m-Y" }}</small>
+              </div>
+              <p class="mb-1">{{ calendario.2 }}</p>
+              <small>{{ calendario.2 }}</small>
+            </a>
+        {% endfor %}
+    </div
+
+</div>
+
+
+
+{% endblock %}

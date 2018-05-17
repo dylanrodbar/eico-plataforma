@@ -1,0 +1,23 @@
+                <div class="modal-content">           
+                        <div class="modal-body" style="padding:40px 50px;">                
+            
+                            <form class="form-signin" method='POST' action='{% url 'home:editarEventoAux' id %}'  > {% csrf_token %}
+                                <h1 align="center">Calendario</h1>
+                                <br>
+                                <h4>Ingrese la nueva fecha, titulo y descripcion</h4>
+                                <br>
+                                <input type="date" name="fecha-evento" required>
+                                <br>
+                                <br>
+                                <label for="EditNameSitio" class="sr-only">Correo</label>
+                                <input type="text" id="input" name="nombre-evento" class="form-control" placeholder="Nombre..." required autofocus>
+                                <br>
+                                <div class="form-group">
+                                        <label for="EditDescriptionSitio"></label>
+                                        <textarea class="form-control" name="descripcion-evento" rows="5" id="comment" placeholder="Descripcion..."></textarea>
+                                </div>
+                                <br>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+                          </form>
+                        </div>
+                </div>

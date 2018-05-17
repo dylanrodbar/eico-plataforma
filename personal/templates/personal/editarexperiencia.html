@@ -1,0 +1,26 @@
+            <!-- Modal content-->
+            <div class="modal-content">           
+                <div class="modal-body" style="padding:40px 50px;">                
+                        <form class="form-signin" method='POST' action='{% url 'perfil:editarExperienciaAux' id %}'  > {% csrf_token %}
+                            <h1 align="center">Editar Experiencia</h1>
+                            <br>
+                            <input type="text" id="input" name="puestoexperiencia" class="form-control" placeholder="Nombre del puesto/Nombre proyecto..." required autofocus>
+                            <br>
+                            <input type="text" id="input" name="trabajoexperiencia" class="form-control" placeholder="Lugar de trabajo...">
+                            <h5>Inicio</h5>
+                            <input type="date" name="finicioexperiencia" required>
+                            <br>
+                            <h5>Finalizacion</h5>
+                            <input type="date" name="ffinalexperiencia" required>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                    <textarea class="form-control" name="descripcionexperiencia" style="resize: none;" rows="5" id="comment" placeholder="Descripcion..."></textarea>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
+                      </form>      
+                </div>
+            </div>    
+       
+            
