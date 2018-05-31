@@ -365,10 +365,8 @@ def index(request):
         
     
     cur = connection.cursor()
-    cur.execute("BEGIN")
     cur.callproc('obtener_publicaciones_recientes', ())
     publicaciones = cur.fetchall()
-    cur.execute("COMMIT")
     cur.nextset()
 
     cur.callproc('insertar_visita', [])
