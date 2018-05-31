@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'EICO.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -93,6 +93,18 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'lancelote1',
         
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'eico',
+        'USER': 'postgres',
+        'PASSWORD': 'lancelote1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
