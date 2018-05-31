@@ -652,10 +652,17 @@ def buscarUsuarioEgresado(request):
     cur.callproc('obtener_usuarios_substring_egresados', [parametro])
     usuarios = cur.fetchall()
 
+    cur.nextset()
+    cur.callproc('obtener_experiencias_o_proyectos_substring', [parametro])
+    experiencias = cur.fetchall()
+
+    print(experiencias)
+    
     
 
     context = {
    	    'usuarios': usuarios,
+        'experiencias': experiencias
     }
     return HttpResponse(template.render(context, request))
 

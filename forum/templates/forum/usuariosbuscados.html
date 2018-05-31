@@ -3,24 +3,52 @@
 {% block content %}
 {% load staticfiles %}
 
+
 <!-- Modal content-->
+
 <div class="modal-dialog">
 <div class="modal-content">     
                
         <div class="modal-body" style="padding:40px 50px;"> 
-            <h1>Resultados de la busqueda</h1>   
-          <ul class="w3-ul w3-hoverable w3-white">               
+            <h1>Resultados de la busqueda</h1>
+          <ul class="nav nav-tabs list-inline">
+                <li class="active"><a data-toggle="tab" href="#usuario">Resultados para usuarios</a></li>
+                <li><a data-toggle="tab" href="#experiencia">Resultados para experiencia laboral</a></li>
+          </ul>
+          
+          <div class="tab-content">          
+          <div id="usuario" class="tab-pane fade in active">
+          <ul  class="w3-ul w3-hoverable w3-white">               
             {% for i in usuarios %}
-            <li class="w3-padding-16">
+            <li  class="w3-padding-16">
                 <a href="/perfil/ajeno/{{i.0}}">
                     <img src={{i.7}} alt="Image" class="w3-left w3-margin-right" style="height:30px; width: 30px">
                 </a>
               <span class="w3-large">{{i.1}}</span><br>
             </li>
+          
           {% endfor %}
           </ul>
         </div>
+
+        <div id="experiencia" class="tab-pane fade">
+            <ul  class="w3-ul w3-hoverable w3-white">               
+              {% for i in experiencias %}
+              <li  class="w3-padding-16">
+                  <a href="/perfil/ajeno/{{i.0}}">
+                      <img src={{i.7}} alt="Image" class="w3-left w3-margin-right" style="height:30px; width: 30px">
+                  </a>
+                <span class="w3-large">{{i.1}} - {{i.12}}</span><br>
+              </li>
+            
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        </div>
     </div>
 </div>
+
 
     {% endblock %}
