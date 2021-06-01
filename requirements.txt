@@ -106,7 +106,7 @@ tqdm==4.23.1
 twine==1.11.0
 Twisted==18.4.0
 uritemplate==3.0.0
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==15.2.0
 virtualenvwrapper-win==1.2.5
 w3lib==1.19.0
