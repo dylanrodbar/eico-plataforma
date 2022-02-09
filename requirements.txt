@@ -100,7 +100,7 @@ sklearn==0.0
 tec.ic.ia.p1.g05==9.2.0
 tec.ic.ia.pc1.g05==9.1.0
 tensorboard==1.8.0
-tensorflow==1.8.0
+tensorflow==2.5.3
 termcolor==1.1.0
 tqdm==4.23.1
 twine==1.11.0
